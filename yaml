@@ -1,21 +1,17 @@
-version: "3.8"
-
 services:
-  n8n:
-    # Instead of a ready-made image, build from your Dockerfile
-    build: .
-    container_name: n8n_with_ffmpeg
-    restart: unless-stopped
+  - type: web
+    name: n8n-with-ffmpeg
+    env: docker
+    dockerfilePath: ./Dockerfile
+    # Add the start command here:
+    startCommand: n8n start
+    envVars:
+      - key: N8N_BASIC_AUTH_ACTIVE
+        value: true
+      - key: N8N_BASIC_AUTH_USER
+        value: admin
+      - key: N8N_BASIC_AUTH_PASSWORD
+        value: Victor1243#
     ports:
-      - "5678:5678"
-    environment:
-      - N8N_BASIC_AUTH_ACTIVE=true
-      - N8N_BASIC_AUTH_USER=admin
-      - N8N_BASIC_AUTH_PASSWORD=Victor1243#
-      - N8N_HOST=localhost
-      - WEBHOOK_URL=http://localhost:5678/
-    volumes:
-      - n8n_data:/home/node/.n8n
-
-volumes:
-  n8n_data:
+      - port: 5678
+        protocol: TCP
