@@ -11,7 +11,7 @@ services:
       - key: N8N_BASIC_AUTH_USER
         value: admin
       - key: N8N_BASIC_AUTH_PASSWORD
-        value: Victor1243#
+        value: Victor1243@
     ports:
       - port: 5678
         protocol: TCP
